@@ -1,0 +1,43 @@
+{
+  "name": "toolhunt",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An MCP server that analyzes your project and recommends + installs the right AI tools.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "toolhunt-mcp": "dist/mcp/server.js"
+  },
+  "workspaces": [
+    "ui"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "build:ui": "npm run build --workspace ui",
+    "build:all": "npm run build && npm run build:ui",
+    "start": "node dist/web/server.js",
+    "mcp": "node dist/mcp/server.js",
+    "dev:mcp": "tsx watch src/mcp/server.ts",
+    "dev:web": "tsx watch src/web/server.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.18.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "lowdb": "^7.0.1",
+    "toolhunt-ui": "^0.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

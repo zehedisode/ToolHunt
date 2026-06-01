@@ -1,0 +1,11 @@
+node_modules/
+dist/
+ui/dist/
+ui/*.tsbuildinfo
+*.tsbuildinfo
+.toolhunt/db.json
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
