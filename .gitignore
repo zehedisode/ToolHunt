@@ -9,3 +9,4 @@ ui/*.tsbuildinfo
 !.env.example
 *.log
 .DS_Store
+.github/workflows/ci.yml
