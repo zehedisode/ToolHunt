@@ -23,7 +23,9 @@
     "dev:mcp": "tsx watch src/mcp/server.ts",
     "dev:web": "tsx watch src/web/server.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "tsx --test test/*.test.ts"
+    "test": "tsx --test test/*.test.ts",
+    "catalog:build": "node scripts/build-catalog.mjs",
+    "catalog:stats": "node scripts/build-catalog.mjs --dry-run"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.18.0",

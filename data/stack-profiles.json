@@ -1,0 +1,81 @@
+{
+  "version": "1.0.0",
+  "note": "Patterns the AI prompt uses to detect a project's stack. Derived from src/analyzer/stackDetector.ts. Add new patterns here when a new framework becomes mainstream — no code change required.",
+  "languages": {
+    "typescript": {
+      "manifests": ["package.json"],
+      "signals": ["tsconfig.json", "*.ts", "*.tsx", "*.jsx", "*.js"],
+      "manifest_keys": ["dependencies", "devDependencies"]
+    },
+    "python": {
+      "manifests": ["requirements.txt", "pyproject.toml", "Pipfile", "setup.py"],
+      "signals": ["*.py", "Pipfile.lock"],
+      "manifest_keys": []
+    },
+    "rust": {
+      "manifests": ["Cargo.toml"],
+      "signals": ["*.rs", "Cargo.lock"],
+      "manifest_keys": ["dependencies", "dev-dependencies"]
+    },
+    "go": {
+      "manifests": ["go.mod"],
+      "signals": ["*.go", "go.sum"],
+      "manifest_keys": ["require"]
+    },
+    "other": {
+      "manifests": ["composer.json"],
+      "signals": ["*.php"],
+      "manifest_keys": ["require", "require-dev"]
+    }
+  },
+  "frameworks": {
+    "nextjs":      { "deps_any": ["next"],                       "languages": ["typescript"] },
+    "remix":       { "deps_any": ["@remix-run/react", "@remix-run/node"], "languages": ["typescript"] },
+    "nuxt":        { "deps_any": ["nuxt"],                       "languages": ["typescript"] },
+    "nestjs":      { "deps_any": ["@nestjs/core"],               "languages": ["typescript"] },
+    "express":     { "deps_any": ["express"],                    "languages": ["typescript"] },
+    "fastify":     { "deps_any": ["fastify"],                    "languages": ["typescript"] },
+    "svelte":      { "deps_any": ["@sveltejs/kit", "svelte"],    "languages": ["typescript"] },
+    "vue":         { "deps_any": ["vue"],                        "languages": ["typescript"] },
+    "react":       { "deps_any": ["react"],                      "languages": ["typescript"] },
+    "electron":    { "deps_any": ["electron"],                   "languages": ["typescript"] },
+    "fastapi":     { "deps_any": ["fastapi"],                    "languages": ["python"] },
+    "django":      { "deps_any": ["django"],                     "languages": ["python"] },
+    "flask":       { "deps_any": ["flask"],                      "languages": ["python"] },
+    "axum":        { "deps_any": ["axum"],                       "languages": ["rust"] },
+    "actix":       { "deps_any": ["actix-web"],                  "languages": ["rust"] },
+    "rocket":      { "deps_any": ["rocket"],                     "languages": ["rust"] },
+    "gin":         { "deps_any": ["gin-gonic/gin"],              "languages": ["go"] },
+    "echo":        { "deps_any": ["labstack/echo"],              "languages": ["go"] },
+    "fiber":       { "deps_any": ["gofiber/fiber"],              "languages": ["go"] }
+  },
+  "databases": {
+    "postgres": { "any": ["pg", "postgres", "postgresql", "@neondatabase", "prisma"] },
+    "mongodb":  { "any": ["mongodb", "mongoose"] },
+    "mysql":    { "any": ["mysql", "mysql2"] },
+    "sqlite":   { "any": ["sqlite", "better-sqlite3", "sqlite3"] },
+    "redis":    { "any": ["redis", "ioredis"] }
+  },
+  "infrastructure": {
+    "docker":          { "files_any": ["Dockerfile", "docker-compose.yml", "docker-compose.yaml"] },
+    "vercel":          { "files_any": ["vercel.json"], "dirs_any": [".vercel"] },
+    "netlify":         { "files_any": ["netlify.toml"] },
+    "github-actions":  { "dirs_any": [".github/workflows"] },
+    "aws":             { "files_any": ["serverless.yml", "template.yaml"] }
+  },
+  "project_types": {
+    "ai-agent":       { "signals_any": ["langchain", "langgraph", "crewai", "autogen", "@modelcontextprotocol", "openai", "anthropic", "mastra"] },
+    "web-app":        { "frameworks": ["nextjs", "remix", "nuxt", "svelte", "vue", "react", "electron"] },
+    "api":            { "frameworks": ["express", "fastify", "nestjs", "fastapi", "django", "flask", "axum", "gin", "echo"] },
+    "data-pipeline":  { "dirs_match": ["(^|/)pipelines?", "(^|/)etl", "(^|/)dags"] },
+    "cli":            { "manifest_keys": ["bin"] }
+  },
+  "category_importance": {
+    "_description": "How much each of the 9 categories matters for a given project type. The default is 0.6 for any (category, project_type) pair not listed.",
+    "ai-agent":      { "Orchestrators": 1.0, "Agents": 1.0, "Memory": 0.9, "MCP Tools": 0.85, "Skills": 0.8, "Prompt Templates": 0.75, "Context Windows": 0.7, "Logging and Telemetry": 0.6, "API Integrations": 0.55 },
+    "web-app":       { "API Integrations": 1.0, "Logging and Telemetry": 0.85, "MCP Tools": 0.7, "Memory": 0.65, "Agents": 0.5, "Skills": 0.5, "Orchestrators": 0.45, "Prompt Templates": 0.45, "Context Windows": 0.4 },
+    "api":           { "API Integrations": 1.0, "Logging and Telemetry": 0.9, "MCP Tools": 0.75, "Memory": 0.6, "Agents": 0.5, "Orchestrators": 0.5, "Skills": 0.45, "Prompt Templates": 0.4, "Context Windows": 0.4 },
+    "data-pipeline": { "Memory": 1.0, "Orchestrators": 0.9, "Logging and Telemetry": 0.8, "API Integrations": 0.7, "MCP Tools": 0.6, "Agents": 0.5, "Skills": 0.45, "Prompt Templates": 0.45, "Context Windows": 0.5 },
+    "cli":           { "MCP Tools": 0.9, "API Integrations": 0.8, "Skills": 0.7, "Logging and Telemetry": 0.6, "Agents": 0.5, "Orchestrators": 0.5, "Memory": 0.5, "Prompt Templates": 0.45, "Context Windows": 0.4 }
+  }
+}
