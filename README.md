@@ -28,6 +28,15 @@ That's it. Nothing to install, no API keys required, works on any project in
 any language. The prompt is fully self-contained — it inlines a curated
 catalog and the scoring rubric so it works even with no network access.
 
+### Hybrid mode (recommended)
+
+The prompt runs in **hybrid mode** by default: the AI scores the curated
+catalog, then uses its own web tools to discover 3-5 additional tools per
+missing category. The result is high-quality *and* up-to-date — curated for
+signal, live for freshness. Every recommendation in the report is tagged
+with its source (`curated`, `live-search`, or `model-knowledge`) so you
+know what to trust.
+
 ### What the report looks like
 
 ```markdown

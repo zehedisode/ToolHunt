@@ -34,15 +34,20 @@ GitHub issue, PR description, or Notion page.
 
 ## Recommendations by category
 
-For each missing category, list the top 1-2 tools. Skip categories that are
-genuinely irrelevant for the project (with a one-line justification).
+For each missing category with `categoryImportance ≥ 0.5` for the project type,
+list the top 1-2 tools. Skip the rest with a one-line reason.
 
-### {Category 1} (importance {0.0-1.0})
+**Source badges:** every tool must show where it came from:
+- `curated` — found in `data/catalog.json`
+- `live-search` — discovered via your web tools in step 4 (hybrid mode)
+- `model-knowledge` — recalled from your training data (no live search)
 
-- **{tool_name}** — score {0-100}, popularity {0-100}, recency {0-100}
-  - Why: {one-sentence fit reason}
-  - Install: `{install_command}`
-  - Link: {url}
+### {Category} (importance {0.00-1.00}, {missing|covered})
+
+- **{name}** — score {0-100} `[{source}]`
+  - Why: {concrete fit reason for this specific project}
+  - Install: `{install_command}` *(omit if you don't have a verified command)*
+  - Link: {url} *(omit if you don't have a verified URL)*
 
 - **{tool_name}** — score {0-100}
   - Why: ...

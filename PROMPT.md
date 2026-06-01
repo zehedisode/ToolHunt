@@ -33,10 +33,20 @@ produce a single markdown report following the format below. **Do nothing else.*
 3. Load the catalog from
    <https://raw.githubusercontent.com/zehedisode/ToolHunt/main/data/catalog.json>
    (or use the inlined subset below if you cannot fetch).
-4. Score every tool in the catalog against the stack using the rubric in
+4. **Live discovery (hybrid mode).** Use any tools you have — web search,
+   `fetch`, `WebSearch`, `WebFetch`, `mcp__*` — to find **3-5 additional
+   tools outside the curated catalog** that might fit the project. The
+   curated catalog is high-quality but not exhaustive; this step catches
+   tools released in the last few weeks and niche picks the maintainers
+   haven't curated yet. Treat each live discovery as
+   `popularity_hint: 50` (unknown) unless you have strong evidence
+   otherwise, and mark it `source: live-search` in the report. If you
+   have no web tools available, skip this step.
+5. Score every tool — both curated and live-discovered — against the
+   stack using the rubric in
    <https://raw.githubusercontent.com/zehedisode/ToolHunt/main/data/scoring-rubric.md>
    (inlined below).
-5. Output the report using the template in
+6. Output the report using the template in
    <https://raw.githubusercontent.com/zehedisode/ToolHunt/main/data/output-template.md>
    (inlined below).
 
@@ -116,6 +126,10 @@ where `coverageFactor` is 1.0 if the category is missing, 0.4 otherwise.
 
 If you cannot fetch the live catalog, use this curated seed. The full catalog
 is at `https://raw.githubusercontent.com/zehedisode/ToolHunt/main/data/catalog.json`.
+
+> **Hybrid mode:** after scoring the catalog, also do a live web search for
+> 3-5 additional candidates per missing category. Mark them `source:
+> live-search` in the report. They get `popularity_hint: 50` by default.
 
 | Category | Tool | Score hint (0-100) | Why it's here |
 |---|---|---|---|
